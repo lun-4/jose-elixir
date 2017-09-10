@@ -3,5 +3,5 @@
 use Mix.Config
 
 config :jose,
-  token: "MzE5NTIyNzkyODU0OTEzMDI1.DJcBAw.92JvE0XSFE158Kmt2GTgoKmV7Bc",
+  token: "MzE5NTIyNzkyODU0OTEzMDI1.DJdXzQ.f7bc_1NPJA6CqVfs6saqoe-4TBY",
   prefix: "ej!"
