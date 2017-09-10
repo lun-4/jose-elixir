@@ -21,6 +21,8 @@ defmodule Jose do
     run = Client.start(Application.fetch_env!(:jose, :token))
     Alchemy.Cogs.set_prefix(Application.fetch_env!(:jose, :prefix))
     use BaseCommands
+    use JoseEval
+    use JoseAdmin
     run
   end
 end
