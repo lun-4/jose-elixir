@@ -4,8 +4,9 @@ defmodule Booru do
   end
 
   def fetch(url, tags, limit) do
-    response = HTTPoison.get!("#{url}?limit=#{limit}&tags=#{tags}")
-    {:ok, postdata} = Poison.decode response.body
+    encoded = URI.encode(tags)
+    response = HTTPoison.get!("#{url}?limit=#{limit}&tags=#{encoded}")
+    postdata = Poison.decode! response.body
     postdata
   end
 end
