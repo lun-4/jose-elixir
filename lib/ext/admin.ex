@@ -1,17 +1,17 @@
 defmodule JoseAdmin do
-  alias Alchemy.Client
   use Alchemy.Cogs
 
   Cogs.set_parser(:shell, &List.wrap/1)
   Cogs.def shell(cmdline) do
     if Utils.is_admin?(message) do
       splitted = String.split cmdline, " ", parts: 2
-      if Enum.count(splitted) < 2 do
-        [command] = splitted
-        args = []
+
+      [command, args] = if Enum.count(splitted) < 2 do
+        [cmd] = splitted
+        [cmd, []]
       else
-        [command, args] = splitted
-        args = String.split args
+        [cmd, arg] = splitted
+        [cmd, String.split(arg)]
       end
 
       try do
@@ -20,6 +20,7 @@ defmodule JoseAdmin do
       rescue
         e -> Cogs.say "Error while running the command: #{inspect e}"
       end
+
     else
       Cogs.say "dont hax me u fucking cunt"
     end

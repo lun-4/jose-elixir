@@ -15,6 +15,18 @@ defmodule Jose do
       deltastr = :erlang.float_to_binary(delta, [{:decimals, 2}])
       Client.edit_message(p, "`#{deltastr}ms`")
     end
+
+    Cogs.def nsfw do
+      {:ok, guild_id} = Cogs.guild_id()
+      Cogs.say guild_id
+      Cogs.say message.channel_id
+
+      case Alchemy.Cache.channel(guild_id, message.channel_id) do
+        {:ok, chan} ->
+           Cogs.say "#{inspect chan.nsfw}"
+        err -> Cogs.say "#{inspect err}"
+      end
+    end
   end
 
   def start(_type, _args) do
@@ -23,6 +35,7 @@ defmodule Jose do
     use BaseCommands
     use JoseEval
     use JoseAdmin
+    use Nsfw.Commands
     run
   end
 end
