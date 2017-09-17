@@ -24,7 +24,8 @@ defmodule Jose.Mixfile do
     [
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
-      {:alchemy, "~> 0.6.0", hex: :discord_alchemy}
+      {:alchemy, "~> 0.6.0", hex: :discord_alchemy},
+      {:jcoin, "~> 0.1.0", github: "lnmds/jcoin"}
     ]
   end
 end

@@ -14,7 +14,9 @@ end
 defmodule Nsfw do
   alias Alchemy.Cache
   alias Alchemy.Client
+
   alias Alchemy.Embed
+  require Alchemy.Embed
 
   def fetch_e621(tags) do
     fetch_e621(tags, 5)
@@ -59,5 +61,26 @@ defmodule Nsfw do
         _ -> Cogs.say "no nsfw in sfw chan reeee"
       end
     end
+
+    Cogs.def neko do
+      r = HTTPoison.get! "http://nekos.life/api/neko"
+      neko = Poison.decode! r.body
+
+      %Embed{}
+      |> Embed.color(0xf84a6e)
+      |> Embed.image(neko["neko"])
+      |> Embed.send
+    end
+
+    Cogs.def lewdneko do
+      r = HTTPoison.get! "http://nekos.life/api/lewd/neko"
+      neko = Poison.decode! r.body
+
+      %Embed{}
+      |> Embed.color(0xf84a6e)
+      |> Embed.image(neko["neko"])
+      |> Embed.send
+    end
+
   end
 end
