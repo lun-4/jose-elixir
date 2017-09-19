@@ -36,6 +36,7 @@ defmodule Jose do
     use JoseEval
     use JoseAdmin
     use Nsfw.Commands
+    use Extra.Commands
     run
   end
 end
