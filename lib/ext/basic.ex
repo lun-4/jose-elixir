@@ -16,7 +16,7 @@ defmodule Basic do
         #data = Map.get(all, key)
 
         e = e
-            |> Embed.description(e.desription ++ "#{key}\n")
+            |> Embed.description(e.description ++ "#{key}\n")
       end)
 
       Embed.send e
