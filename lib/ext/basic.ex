@@ -6,15 +6,6 @@ defmodule Basic do
     use Alchemy.Cogs
 
     Cogs.def help do
-      all_commands = Cogs.all_commands
-
-      all_commands
-      |> Map.keys()
-      |> Enum.each(fn key do
-        command_data = Map.get(all_commands, key)
-
-      end)
-
       e = %Alchemy.Embed{description: ""}
       |> Embed.title("Command list")
 
