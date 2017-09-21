@@ -10,13 +10,15 @@ defmodule Basic do
       |> Embed.title("Command list")
 
       all = Alchemy.Cogs.all_commands
-      all
+      
+      reduced = all
       |> Map.keys
-      |> Enum.each(fn key ->
-        e = Embed.description(e, "#{e.description}\n#{key}")
+      |> Enum.map_reduce(e, fn key ->
+        {key, Embed.description(e, "#{e.description}\n#{key}")}
       end)
 
-      Embed.send e
+      help_embed = elem reduced, 1
+      Embed.send help_embed
 
     end
 
