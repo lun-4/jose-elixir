@@ -13,10 +13,7 @@ defmodule Basic do
       all
       |> Map.keys
       |> Enum.each(fn key ->
-        #data = Map.get(all, key)
-
-        e = e
-            |> Embed.description("#{e.description}\n#{key}")
+        e = Embed.description(e, "#{e.description}\n#{key}")
       end)
 
       Embed.send e
