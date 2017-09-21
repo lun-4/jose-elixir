@@ -13,7 +13,7 @@ defmodule Basic do
       
       reduced = all
       |> Map.keys
-      |> Enum.map_reduce(e, fn key ->
+      |> Enum.map_reduce(e, fn (key, e) ->
         {key, Embed.description(e, "#{e.description}\n#{key}")}
       end)
 
