@@ -25,7 +25,7 @@ defmodule Basic do
 
         formatted = "#{name}/#{arity}"
         new_embed = Embed.description(e, "#{e.description}\n#{formatted}")
-        {formatted, new_embed)}
+        {formatted, new_embed}
       end)
 
       help_embed = elem reduced, 1
