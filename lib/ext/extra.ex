@@ -66,7 +66,7 @@ defmodule Extra do
     Cogs.def profile do
       {:ok, guild} = Cogs.guild_id
 
-      get_profile(guild, message.author.id)
+      Extra.get_profile(guild, message.author.id)
       |> make_embed
       |> Embed.send
     end
@@ -77,7 +77,7 @@ defmodule Extra do
         {:ok, id} ->
           {:ok, guild} = Cogs.guild_id
 
-          get_profile(guild, id)
+          Extra.get_profile(guild, id)
           |> make_embed
           |> Embed.send
 
