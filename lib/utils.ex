@@ -50,14 +50,14 @@ defmodule Utils do
 
     case avatar_type do
       "gif" ->
-        url = message.author
+        url = user
         |> Alchemy.User.avatar_url(avatar_type, 128)
 
         len = String.length url
 
         String.slice(url, 0..(len - 10))
       _ ->
-        message.author
+        user
         |> Alchemy.User.avatar_url(avatar_type, 1024)
     end
   end
