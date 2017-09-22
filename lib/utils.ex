@@ -31,7 +31,7 @@ defmodule Utils do
         {:error, "this is not a mention"}
       _ ->
         len = String.length string
-        uid = String.slice string, starting_slice..(len - 1)
+        uid = String.slice string, starting_slice..(len - 2)
 
         {:ok, uid}
     end
