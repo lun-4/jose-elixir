@@ -26,8 +26,12 @@ defmodule Extra do
       {:ok, profile} ->
         %{member: member} = profile
 
+        footer = %Alchemy.Embed.Footer{text: "User ID: #{member.user.id}",
+                                      icon_url: ""
+        }
+
         %Embed{title: "Profile card"}
-        |> Embed.footer("User ID: #{member.user.id}")
+        |> Embed.footer(footer)
         |> Embed.thumbnail(Utils.user_avatar(member.user))
         |> Embed.field("Name", get_name(member))
 
