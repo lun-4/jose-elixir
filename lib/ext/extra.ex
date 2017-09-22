@@ -12,11 +12,25 @@ defmodule Extra do
       {:error, err} -> {:error, err}
     end
   end
-  
+
+  def get_name(member) do
+    uname = member.user.username
+    case member.nick do
+      nil -> "#{uname}"
+      nickname -> "#{nickname} (#{uname})"
+    end
+  end
+
   def make_embed(profile) do
     case profile do
       {:ok, profile} ->
-        %Embed{description: "it works"}
+        %{member: member} = profile
+
+        %Embed{title: "Profile card"}
+        |> Embed.footer("User ID: #{member.user.id}")
+        |> Embed.thumbnail(Utils.user_avatar(member.user))
+        |> Embed.field("Name", get_name(member))
+
       {:error, err} ->
         %Embed{description: "error: #{err}"}
     end
@@ -26,27 +40,8 @@ defmodule Extra do
     use Alchemy.Cogs
 
     Cogs.def avatar do
-      avatar_type = if String.starts_with?(message.author.avatar, "a_") do
-        "gif"
-      else
-        "png"
-      end
-
-      case avatar_type do
-        "gif" ->
-          url = message.author
-          |> Alchemy.User.avatar_url(avatar_type, 128)
-
-          len = String.length url
-
-          String.slice(url, 0..(len - 10))
-          |> Cogs.say
-        _ ->
-          message.author
-          |> Alchemy.User.avatar_url(avatar_type, 1024)
-          |> Cogs.say
-      end
-
+      Utils.user_avatar(message.author)
+      |> Cogs.say
     end
 
     Cogs.def awoo do

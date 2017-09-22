@@ -37,4 +37,29 @@ defmodule Utils do
     end
   end
 
+
+  @doc """
+  Get a user's avatar URL in discord.
+  """
+  def user_avatar(user) do
+    avatar_type = if String.starts_with?(user.avatar, "a_") do
+      "gif"
+    else
+      "png"
+    end
+
+    case avatar_type do
+      "gif" ->
+        url = message.author
+        |> Alchemy.User.avatar_url(avatar_type, 128)
+
+        len = String.length url
+
+        String.slice(url, 0..(len - 10))
+      _ ->
+        message.author
+        |> Alchemy.User.avatar_url(avatar_type, 1024)
+    end
+  end
+
 end
