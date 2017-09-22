@@ -20,16 +20,15 @@ defmodule Utils do
   end
 
   def user_id(string) do
-    starting_slice = if String.starts_with? string, "<@!" do
-      3
-    else if String.starts_with string, "<@"do
-      2
-    else
-      -1
+    starting_slice = cond do
+      String.starts_with?(string, "<@!") -> 3
+      String.starts_with?(string, "<@") -> 2
+      true -> -1
     end
 
     case starting_slice do
-      -1 -> {:error, "this is not a mention"}
+      -1 ->
+        {:error, "this is not a mention"}
       _ ->
         len = String.length string
         uid = String.slice string, starting_slice..(len - 1)
