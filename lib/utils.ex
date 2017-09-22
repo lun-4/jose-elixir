@@ -19,4 +19,13 @@ defmodule Utils do
     Enum.find(admins, fn(x) -> message.author.id == x end) != nil
   end
 
+  def user_id(string) do
+    if String.starts_with? string, "<@" do
+      "<@" <> uid <> ">" = string
+      {:ok, uid}
+    else
+      {:error, "Failed to parse mention"}
+    end
+  end
+
 end
