@@ -13,14 +13,28 @@ defmodule Extra do
         "png"
       end
 
-      message.author
-      |> Alchemy.User.avatar_url(avatar_type, 1024)
-      |> Cogs.say
+      if avatar_type == "gif" do
+      end
+
+      case avatar_type do
+        "gif" ->
+          url = message.author
+          |> Alchemy.User.avatar_url(avatar_type, 128)
+
+          len = String.length s
+
+          String.slice(s, 0..(len - 10))
+          |> Cogs.say
+        _ ->
+          message.author
+          |> Alchemy.User.avatar_url(avatar_type, 1024)
+          |> Cogs.say
+      end
     end
 
     Cogs.def awoo do
       Cogs.say "https://cdn.discordapp.com/attachments/202055538773721099/257717450135568394/awooo.gif"
-    end
+    end0
 
     Cogs.def presence do
       {:ok, id} = Cogs.guild_id()
