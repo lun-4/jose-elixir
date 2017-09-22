@@ -21,7 +21,9 @@ defmodule Utils do
 
   def user_id(string) do
     if String.starts_with? string, "<@" do
-      "<@" <> uid <> ">" = string
+      len = String.length string
+      uid = String.slice string, 2..(len - 1)
+
       {:ok, uid}
     else
       {:error, "Failed to parse mention"}

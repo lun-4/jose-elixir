@@ -8,7 +8,7 @@ defmodule Extra do
   def get_profile(guild, userid) do
     case Cache.member(guild, userid) do
       {:ok, member} ->
-        {:ok, %{}}
+        {:ok, %{member: member}}
       {:error, err} -> {:error, err}
     end
   end
