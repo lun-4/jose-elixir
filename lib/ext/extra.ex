@@ -71,7 +71,6 @@ defmodule Extra do
       |> Embed.send
     end
 
-    Cogs.set_parser(:profile, &List.wrap/1)
     Cogs.def profile(someone) do
       case Utils.user_id(someone) do
         {:ok, id} ->
