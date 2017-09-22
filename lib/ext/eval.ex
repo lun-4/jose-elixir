@@ -15,8 +15,9 @@ defmodule JoseEval do
         env = Keyword.delete(env, :msg)
         Cogs.say "result: ```elixir\n#{inspect result}\n```\nenv: ```\n#{inspect env}```"
       rescue
-        Client.add_reaction(message, "\u274c")
-        e -> Cogs.say "#{inspect e}"
+        e ->
+          Cogs.say "#{inspect e}"
+          Client.add_reaction(message, "\u274c")
       end
     else
       Cogs.say "nope you can't do this"
