@@ -18,9 +18,9 @@ defmodule Extra do
           url = message.author
           |> Alchemy.User.avatar_url(avatar_type, 128)
 
-          len = String.length s
+          len = String.length url
 
-          String.slice(s, 0..(len - 10))
+          String.slice(url, 0..(len - 10))
           |> Cogs.say
         _ ->
           message.author
