@@ -13,9 +13,6 @@ defmodule Extra do
         "png"
       end
 
-      if avatar_type == "gif" do
-      end
-
       case avatar_type do
         "gif" ->
           url = message.author
@@ -30,6 +27,7 @@ defmodule Extra do
           |> Alchemy.User.avatar_url(avatar_type, 1024)
           |> Cogs.say
       end
+
     end
 
     Cogs.def awoo do
