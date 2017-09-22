@@ -20,13 +20,21 @@ defmodule Utils do
   end
 
   def user_id(string) do
-    if String.starts_with? string, "<@" do
-      len = String.length string
-      uid = String.slice string, 2..(len - 1)
-
-      {:ok, uid}
+    starting_slice = if String.starts_with? string, "<@!" do
+      3
+    else if String.starts_with string, "<@"do
+      2
     else
-      {:error, "Failed to parse mention"}
+      -1
+    end
+
+    case starting_slice do
+      -1 -> {:error, "this is not a mention"}
+      _ ->
+        len = String.length string
+        uid = String.slice string, starting_slice..(len - 1)
+
+        {:ok, uid}
     end
   end
 
