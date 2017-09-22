@@ -32,7 +32,7 @@ defmodule Extra do
 
     Cogs.def awoo do
       Cogs.say "https://cdn.discordapp.com/attachments/202055538773721099/257717450135568394/awooo.gif"
-    end0
+    end
 
     Cogs.def presence do
       {:ok, id} = Cogs.guild_id()
