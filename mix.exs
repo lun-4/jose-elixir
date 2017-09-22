@@ -22,8 +22,9 @@ defmodule Jose.Mixfile do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:alchemy, "~> 0.6.0", github: "cronokirby/alchemy"},
-      {:jcoin, "~> 0.1.0", github: "lnmds/jcoin"}
+      {:alchemy, "~> 0.6.0", hex: :discord_alchemy},
+      {:jcoin, "~> 0.1.0", github: "lnmds/jcoin"},
+      {:distillery, "~> 1.4", runtime: false},
     ]
   end
 end
