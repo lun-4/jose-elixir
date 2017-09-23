@@ -15,7 +15,7 @@ defmodule Jose.Mixfile do
   def application do
     [
       mod: {Jose, []},
-      extra_applications: [:logger]
+      extra_applications: [:logger, :gen_stage, :kcl, :poison, :websocket_client]
     ]
   end
 
