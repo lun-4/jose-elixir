@@ -48,7 +48,7 @@ defmodule Extra do
       |> Cogs.say
     end
 
-    Cogs.def awoo
+    Cogs.def awoo do
       Cogs.say "https://cdn.discordapp.com/attachments/202055538773721099/257717450135568394/awooo.gif"
     end
 
@@ -96,3 +96,4 @@ defmodule Extra do
 
   end
 end
+
