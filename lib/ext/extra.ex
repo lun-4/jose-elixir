@@ -48,7 +48,7 @@ defmodule Extra do
       |> Cogs.say
     end
 
-    Cogs.def awoo do
+    Cogs.def awoo
       Cogs.say "https://cdn.discordapp.com/attachments/202055538773721099/257717450135568394/awooo.gif"
     end
 
@@ -82,6 +82,16 @@ defmodule Extra do
         {:error, err} ->
           Cogs.say "Error parsing user ID: #{err}"
       end
+    end
+
+    Cogs.def braixen do
+      response = HTTPoison.get!("http://the.braixen.party/api/braixenjson/")
+      {:ok, braixen} = response.body
+                       |> Poison.decode
+
+      %Embed{}
+      |> Embed.image(braixen["image"])
+      |> Embed.send
     end
 
   end
