@@ -82,5 +82,9 @@ defmodule Nsfw do
       |> Embed.send
     end
 
+    Cogs.def aculate do
+      Cogs.say "https://www.youtube.com/watch?v=S6UqgjaBt4w"
+    end
+
   end
 end
