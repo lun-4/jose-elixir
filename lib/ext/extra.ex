@@ -48,6 +48,7 @@ defmodule Extra do
       |> Cogs.say
     end
 
+    Cogs.set_parser(:avatar, &List.wrap/1)
     Cogs.def avatar(possible_user) do
       {:ok, guild} = Cogs.guild()
 
