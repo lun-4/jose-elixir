@@ -52,8 +52,9 @@ defmodule Extra do
       {:ok, guild} = Cogs.guild()
 
       case Utils.find_user(possible_user, guild) do
-	{:ok, user} ->
-	  Utils.user_avatar(user) |> Cogs.say
+	{:ok, user_map} ->
+	  user_atom_map = for {key, val} <- user_map, into: %{}, do: {String.to_atom(key), val}
+	  Utils.user_avatar(user_atom_map) |> Cogs.say
 	{:error, err} ->
 	  Cogs.say err
       end
