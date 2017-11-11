@@ -70,7 +70,7 @@ defmodule Utils do
     uid = Utils.user_id(possible)
     case uid do
       {:ok, user_id} ->
-	m = Enum.find(guild.members, {:error, "member not found"}, fn member ->
+	m = Enum.find(guild.members, {:error, "member not found: #{user_id}"}, fn member ->
 	  member.user["id"] == user_id
 	end)
 	case m do
@@ -84,7 +84,7 @@ defmodule Utils do
 	# search through guild members and match on
 	# the name, in a case-insensitive manner
 	dp = String.downcase possible
-	m = Enum.find(guild.members, {:error, "no member found"}, fn member ->
+	m = Enum.find(guild.members, {:error, "no member found: #{dp}"}, fn member ->
 	  nick = if member.nick do member.nick else "" end
 	  dn = String.downcase(nick)
 	  du = String.downcase(member.user["username"])
