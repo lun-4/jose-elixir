@@ -48,6 +48,17 @@ defmodule Extra do
       |> Cogs.say
     end
 
+    Cogs.def avatar(possible_user) do
+      {:ok, guild} = Cogs.guild()
+
+      case Utils.find_user(possible_user, guild) do
+	{:ok, user} ->
+	  Utils.user_avatar(user) |> Cogs.say
+	{:error, err} ->
+	  Cogs.say err
+      end
+    end
+
     Cogs.def awoo do
       Cogs.say "https://cdn.discordapp.com/attachments/202055538773721099/257717450135568394/awooo.gif"
     end
