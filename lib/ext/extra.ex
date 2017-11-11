@@ -118,7 +118,7 @@ defmodule Extra do
 	d = div(h, 24)
 	h2 = rem(h, 24)
 
-	Cogs.say "Uptime: **`{d} days, {h2} hours, {m2} minutes, {s} seconds`**"
+	Cogs.say "Uptime: **`#{d} days, #{h2} hours, #{m2} minutes, #{s} seconds`**"
     end
     
   end
