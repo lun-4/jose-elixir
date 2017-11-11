@@ -77,7 +77,7 @@ defmodule Utils do
 	  {:error, e} ->
 	    {:error, e}
 	  member ->
-	    member.user
+	    {:ok, member.user}
 	end
       {:error, _} ->
 	# Not a mention.
@@ -95,7 +95,7 @@ defmodule Utils do
 	  {:error, e} ->
 	    {:error, e}
 	  member ->
-	    member.user
+	    {:ok, member.user}
 	end
     end
     
