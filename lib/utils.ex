@@ -87,7 +87,7 @@ defmodule Utils do
 	m = Enum.find(guild.members, {:error, "no member found: #{dp}"}, fn member ->
 	  nick = if member.nick do member.nick else "" end
 	  dn = String.downcase(nick)
-	  du = String.downcase(member.user.user)
+	  du = String.downcase(member.user.username)
 
 	  dp == du or dp == dn
 	end)
