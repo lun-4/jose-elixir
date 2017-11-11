@@ -105,6 +105,22 @@ defmodule Extra do
       |> Embed.send
     end
 
+    Cogs.def uptime do
+	{t1, _} = :erlang.statistics(:wall_clock)
+	sec = round(t1 / 1000)
+
+	m = div(sec, 60)
+	s = rem(sec, 60)
+
+	h = div(m, 60)
+	m2 = rem(m, 60)
+
+	d = div(h, 24)
+	h2 = rem(h, 24)
+
+	Cogs.say "Uptime: **`{d} days, {h2} hours, {m2} minutes, {s} seconds`**"
+    end
+    
   end
 end
 
