@@ -71,7 +71,7 @@ defmodule Utils do
     case uid do
       {:ok, user_id} ->
 	m = Enum.find(guild.members, {:error, "member not found"}, fn member ->
-	  member.user.id == user_id
+	  member.user["id"] == user_id
 	end)
 	case m do
 	  {:error, e} ->
