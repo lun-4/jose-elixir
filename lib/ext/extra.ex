@@ -50,14 +50,18 @@ defmodule Extra do
 
     Cogs.set_parser(:avatar, &List.wrap/1)
     Cogs.def avatar(possible_user) do
-      {:ok, guild} = Cogs.guild()
+      if String.length(possible_user) < 1 do
+	Utils.user_avatar(message.author) |> Cogs.say
+      else
+	{:ok, guild} = Cogs.guild()
 
-      case Utils.find_user(possible_user, guild) do
-	{:ok, user} ->
-	  #user_atom_map = for {key, val} <- user_map, into: %{}, do: {String.to_atom(key), val}
-	  Utils.user_avatar(user) |> Cogs.say
-	{:error, err} ->
-	  Cogs.say err
+	case Utils.find_user(possible_user, guild) do
+	    {:ok, user} ->
+	    #user_atom_map = for {key, val} <- user_map, into: %{}, do: {String.to_atom(key), val}
+	    Utils.user_avatar(user) |> Cogs.say
+	    {:error, err} ->
+	    Cogs.say err
+	end
       end
     end
 
