@@ -71,7 +71,7 @@ defmodule Utils do
     case uid do
       {:ok, user_id} ->
 	m = Enum.find(guild.members, {:error, "member not found: #{user_id}"}, fn member ->
-	  member.user["id"] == user_id
+	  member.user.id == user_id
 	end)
 	case m do
 	  {:error, e} ->
@@ -87,7 +87,7 @@ defmodule Utils do
 	m = Enum.find(guild.members, {:error, "no member found: #{dp}"}, fn member ->
 	  nick = if member.nick do member.nick else "" end
 	  dn = String.downcase(nick)
-	  du = String.downcase(member.user["username"])
+	  du = String.downcase(member.user.user)
 
 	  dp == du or dp == dn
 	end)
