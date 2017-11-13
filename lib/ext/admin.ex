@@ -1,6 +1,7 @@
 defmodule JoseAdmin do
   use Alchemy.Cogs
-
+  require Logger
+  
   Cogs.set_parser(:shell, &List.wrap/1)
   Cogs.def shell(cmdline) do
     if Utils.is_admin?(message) do
@@ -25,5 +26,4 @@ defmodule JoseAdmin do
       Cogs.say "dont hax me u fucking cunt"
     end
   end
-
 end

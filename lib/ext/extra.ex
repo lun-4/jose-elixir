@@ -27,8 +27,8 @@ defmodule Extra do
         %{member: member} = profile
 
         footer = %Alchemy.Embed.Footer{text: "User ID: #{member.user.id}",
-                                      icon_url: ""
-        }
+                                       icon_url: ""
+				      }
 
         %Embed{title: "Profile card"}
         |> Embed.footer(footer)
