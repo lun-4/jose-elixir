@@ -148,8 +148,8 @@ defmodule Extra do
       Cogs.say "Ship score: **#{ship_score}%**"
     end
 
-    Cogs.def test2 do
-      Cogs.say "command reload at runtime (2)"
+    Cogs.def test3 do
+      Cogs.say "command reload at runtime (3)"
     end
     
   end
