@@ -151,6 +151,10 @@ defmodule Extra do
     Cogs.def test3 do
       Cogs.say "command reload at runtime (3)"
     end
+
+    Cogs.def test4 do
+      Cogs.say "test test test new commande"
+    end
     
   end
 end
