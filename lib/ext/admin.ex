@@ -26,4 +26,5 @@ defmodule JoseAdmin do
       Cogs.say "dont hax me u fucking cunt"
     end
   end
+
 end
