@@ -27,4 +27,16 @@ defmodule JoseAdmin do
     end
   end
 
+  Cogs.def reload do
+    try do
+      use Basic.Commands
+      use JoseEval
+      use Nsfw.Commands
+      use Extra.Commands
+      Cogs.say "reloaded"
+    rescue
+      e -> Cogs.say "Err: #{inspect e}"
+    end
+  end
+  
 end
