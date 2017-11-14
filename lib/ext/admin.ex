@@ -27,23 +27,24 @@ defmodule JoseAdmin do
     end
   end
 
-  Cogs.def reload do
-    Logger.info "Reloading bot"
-    try do
-      Logger.info "Compiling..."
-      Path.wildcard("lib/ext/*")
-      |> Kernel.ParallelCompiler.files()
+  Cogs.def recompile do
+    if Utils.is_admin?(message) do
+      Logger.info "Recompiling extensions"
 
-      Logger.info "recalling use macro"      
-      use Basic.Commands
-      use JoseEval
-      use Nsfw.Commands
+      m = Path.wildcard("lib/ext/*")
+      |> Kernel.ParallelCompiler.files
+      |> Enum.map(fn line ->
+	" - `#{line}`"
+      end)
+
+      Enum.join(["Loaded modules:\n"] ++ m, "\n")
+      |> Cogs.say
+    end
+  end
+
+  Cogs.def reloadex do
+    if Utils.is_admin?(message) do
       use Extra.Commands
-
-      Logger.info "Reloaded!"
-      Cogs.say "reloaded"
-    rescue
-      e -> Cogs.say "Err: #{inspect e}"
     end
   end
   
