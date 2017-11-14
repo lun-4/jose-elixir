@@ -29,6 +29,9 @@ defmodule JoseAdmin do
 
   Cogs.def reload do
     try do
+      Path.wildcard("lib/ext/*")
+      |> Kernel.ParallelCompiler.files()
+      
       use Basic.Commands
       use JoseEval
       use Nsfw.Commands
