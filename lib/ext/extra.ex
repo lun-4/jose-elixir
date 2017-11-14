@@ -155,6 +155,10 @@ defmodule Extra do
     Cogs.def test4 do
       Cogs.say "test test test new commande"
     end
+
+    Cogs.def test5 do
+      Cogs.say "another"
+    end
     
   end
 end
