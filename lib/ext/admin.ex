@@ -28,14 +28,19 @@ defmodule JoseAdmin do
   end
 
   Cogs.def reload do
+    Logger.info "Reloading bot"
     try do
+      Logger.info "Compiling..."
       Path.wildcard("lib/ext/*")
       |> Kernel.ParallelCompiler.files()
-      
+
+      Logger.info "recalling use macro"      
       use Basic.Commands
       use JoseEval
       use Nsfw.Commands
       use Extra.Commands
+
+      Logger.info "Reloaded!"
       Cogs.say "reloaded"
     rescue
       e -> Cogs.say "Err: #{inspect e}"
