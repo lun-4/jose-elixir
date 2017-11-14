@@ -83,6 +83,8 @@ defmodule Utils do
 	# Not a mention.
 	# search through guild members and match on
 	# the name, in a case-insensitive manner
+
+	# TODO: Levenshtein distance for fuzzy-matching
 	dp = String.downcase possible
 	m = Enum.find(guild.members, {:error, "no member found: #{dp}"}, fn member ->
 	  nick = if member.nick do member.nick else "" end

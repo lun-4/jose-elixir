@@ -126,6 +126,28 @@ defmodule Extra do
 
 	Cogs.say "Uptime: **`#{d} days, #{h2} hours, #{m2} minutes, #{s} seconds`**"
     end
+
+
+    Cogs.def ship(a, b) do
+      guild = Cogs.guild()
+
+      {:ok, user_a} = Utils.find_user(a, guild)
+      {:ok, user_b} = Utils.find_user(b, guild)
+
+      {member_a_int, _} = Integer.parse(user_a.id)
+      {member_b_int, _} = Integer.parse(user_b.id)
+
+      :rand.seed({:exrop, [member_a_int | member_a_int]})
+      a_score = :rand.uniform(100)
+
+      :rand.seed({:exrop, [member_b_int | member_b_int]})
+      b_score = :rand.uniform(100)
+
+      ship_score = (a_score + b_score) / 2
+
+      Cogs.say "Ship score: **#{ship_score}%**"
+    end
+
     
   end
 end
