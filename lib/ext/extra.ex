@@ -129,7 +129,7 @@ defmodule Extra do
 
 
     Cogs.def ship(a, b) do
-      guild = Cogs.guild()
+      {:ok, guild} = Cogs.guild()
 
       {:ok, user_a} = Utils.find_user(a, guild)
       {:ok, user_b} = Utils.find_user(b, guild)
