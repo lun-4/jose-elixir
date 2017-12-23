@@ -28,7 +28,7 @@ defmodule Extra do
 
         footer = %Alchemy.Embed.Footer{text: "User ID: #{member.user.id}",
                                        icon_url: ""
-				      }
+                                      }
 
         %Embed{title: "Profile card"}
         |> Embed.footer(footer)
@@ -51,17 +51,17 @@ defmodule Extra do
     Cogs.set_parser(:avatar, &List.wrap/1)
     Cogs.def avatar(possible_user) do
       if String.length(possible_user) < 1 do
-	Utils.user_avatar(message.author) |> Cogs.say
+        Utils.user_avatar(message.author) |> Cogs.say
       else
-	{:ok, guild} = Cogs.guild()
+        {:ok, guild} = Cogs.guild()
 
-	case Utils.find_user(possible_user, guild) do
-	    {:ok, user} ->
-	    #user_atom_map = for {key, val} <- user_map, into: %{}, do: {String.to_atom(key), val}
-	    Utils.user_avatar(user) |> Cogs.say
-	    {:error, err} ->
-	    Cogs.say err
-	end
+        case Utils.find_user(possible_user, guild) do
+            {:ok, user} ->
+            #user_atom_map = for {key, val} <- user_map, into: %{}, do: {String.to_atom(key), val}
+            Utils.user_avatar(user) |> Cogs.say
+            {:error, err} ->
+            Cogs.say err
+        end
       end
     end
 
@@ -112,19 +112,19 @@ defmodule Extra do
     end
 
     Cogs.def uptime do
-	{t1, _} = :erlang.statistics(:wall_clock)
-	sec = round(t1 / 1000)
+        {t1, _} = :erlang.statistics(:wall_clock)
+        sec = round(t1 / 1000)
 
-	m = div(sec, 60)
-	s = rem(sec, 60)
+        m = div(sec, 60)
+        s = rem(sec, 60)
 
-	h = div(m, 60)
-	m2 = rem(m, 60)
+        h = div(m, 60)
+        m2 = rem(m, 60)
 
-	d = div(h, 24)
-	h2 = rem(h, 24)
+        d = div(h, 24)
+        h2 = rem(h, 24)
 
-	Cogs.say "Uptime: **`#{d} days, #{h2} hours, #{m2} minutes, #{s} seconds`**"
+        Cogs.say "Uptime: **`#{d} days, #{h2} hours, #{m2} minutes, #{s} seconds`**"
     end
 
 
@@ -162,6 +162,18 @@ defmodule Extra do
 
     Cogs.def test6 do
       Cogs.say "and another command"
+    end
+
+    Cogs.def test7 do
+      Cogs.say "AAA"
+    end
+
+    Cogs.def test8 do
+      Cogs.say "BBB"
+    end
+
+    Cogs.def test9 do
+      Cogs.say "CCCCC"
     end
     
   end

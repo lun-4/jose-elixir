@@ -26,6 +26,7 @@ defmodule Jose.Mixfile do
       {:jcoin, "~> 0.1.0", github: "lnmds/jcoin"},
       {:mongodb, ">= 0.0.0"},
       {:poolboy, ">= 0.0.0"},
+      {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
     ]
   end
 end

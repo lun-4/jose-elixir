@@ -32,12 +32,15 @@ defmodule JoseAdmin do
       Logger.info "Recompiling extensions"
 
       m = Path.wildcard("lib/ext/*")
+      Cogs.say "Compiling #{Enum.count(m)} files"
+
+      m
       |> Kernel.ParallelCompiler.files
       |> Enum.map(fn line ->
-	" - `#{line}`"
+        " - `#{line}`"
       end)
 
-      Enum.join(["Loaded modules:\n"] ++ m, "\n")
+      Enum.join(["Loaded modules:"] ++ m, "\n")
       |> Cogs.say
     end
   end
@@ -46,6 +49,10 @@ defmodule JoseAdmin do
     if Utils.is_admin?(message) do
       use Extra.Commands
     end
+  end
+
+  Cogs.def how2reload do
+    Cogs.say "recompile, then use eval and `use` the cogs which changed"
   end
   
 end

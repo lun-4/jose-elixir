@@ -44,22 +44,22 @@ defmodule Basic do
       {{_, io_input}, {_, io_output}}  = :erlang.statistics(:io)
       
       mem_format = fn
-	mem, :kb -> "#{div(mem, 1000)} KB"
-	mem, :mb -> "#{div(mem, 1_000_000)} MB"
+        mem, :kb -> "#{div(mem, 1000)} KB"
+        mem, :mb -> "#{div(mem, 1_000_000)} MB"
       end
 
       info = [
-	{"Processes", "#{processes}"},
-	{"Total Memory", mem_format.(memories[:total], :mb)},
-	{"IO Input", mem_format.(io_input, :mb)},
-	{"Process Memory", mem_format.(memories[:processes], :mb)},
-	{"Code Memory", mem_format.(memories[:code], :mb)},
-	{"IO Output", mem_format.(io_output, :mb)},
-	{"ETS Memory", mem_format.(memories[:ets], :kb)},
-	{"Atom Memory", mem_format.(memories[:atom], :kb)}
+        {"Processes", "#{processes}"},
+        {"Total Memory", mem_format.(memories[:total], :mb)},
+        {"IO Input", mem_format.(io_input, :mb)},
+        {"Process Memory", mem_format.(memories[:processes], :mb)},
+        {"Code Memory", mem_format.(memories[:code], :mb)},
+        {"IO Output", mem_format.(io_output, :mb)},
+        {"ETS Memory", mem_format.(memories[:ets], :kb)},
+        {"Atom Memory", mem_format.(memories[:atom], :kb)}
       ]
       Enum.reduce(info, @red_embed, fn {name, value}, embed ->
-	Alchemy.Embed.field(embed, name, value, inline: true)
+        Alchemy.Embed.field(embed, name, value, inline: true)
       end)
       |> Embed.send
     end
