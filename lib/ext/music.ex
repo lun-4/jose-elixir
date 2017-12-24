@@ -18,6 +18,7 @@ defmodule Music do
   defmodule Commands do
     use Alchemy.Cogs
 
+    Cogs.set_parser(:play, &List.wrap/1)
     Cogs.def play(url) do
       {:ok, guild} = Cogs.guild()
 

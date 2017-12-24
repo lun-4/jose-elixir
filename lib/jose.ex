@@ -39,6 +39,8 @@ defmodule Jose do
     use JoseAdmin
     use Nsfw.Commands
     use Extra.Commands
+    use Music.Commands
+
     run
   end
 end
