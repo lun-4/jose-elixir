@@ -56,7 +56,8 @@ defmodule Nsfw do
               e = Enum.at(posts, 0)
               |> Nsfw.make_embed
               
-              Client.send_message(message.channel_id, "", [embed: e])
+              # Client.send_message(message.channel_id, "", [embed: e])
+              Client.send_message(message.channel.id, "fuck you too gerd")
           end
         _ -> Cogs.say "no nsfw in sfw chan reeee"
       end
@@ -79,7 +80,9 @@ defmodule Nsfw do
       %Embed{}
       |> Embed.color(0xf84a6e)
       |> Embed.image(neko["neko"])
-      |> Embed.send
+      # |> Embed.send
+
+      Cogs.say "fuck you too gerd"
     end
 
     Cogs.def aculate do

@@ -18,9 +18,6 @@ defmodule Jose do
 
     Cogs.def nsfw do
       {:ok, guild_id} = Cogs.guild_id()
-      Cogs.say guild_id
-      Cogs.say message.channel_id
-
       case Alchemy.Cache.channel(guild_id, message.channel_id) do
         {:ok, chan} ->
            Cogs.say "#{inspect chan.nsfw}"
@@ -30,8 +27,10 @@ defmodule Jose do
   end
 
   def start(_type, _args) do
+    Queue.Registry.start
     run = Client.start(Application.fetch_env!(:jose, :token))
     Alchemy.Cogs.set_prefix(Application.fetch_env!(:jose, :prefix))
+
     use BaseCommands
     use Basic.Commands
 

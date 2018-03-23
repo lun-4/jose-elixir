@@ -23,7 +23,9 @@ defmodule Music do
       {:ok, guild} = Cogs.guild()
 
       case Music.context(guild, message) do
-        {:ok, state} ->
+        {:ok, state, pid} ->
+          :ok = Queue.queue(pid, url)
+
           status = Voice.join(guild.id, state.channel_id)
           IO.inspect status
           Voice.play_url(guild.id, url, vol: 100)
@@ -38,10 +40,12 @@ defmodule Music do
       {:ok, guild_id} = Cogs.guild_id()
 
       c = Voice.which_channel(guild_id)
-
       case c do
         nil -> Cogs.say "nothing"
-        something -> Cogs.say "plaing in <##{something}>"
+        channel_id -> 
+          queue = Queue.Registry.find(guild_id)
+          current_song = Queue.current(queue)
+          Cogs.say "plaing #{current_song} in <##{channel_id}>"
       end
     end
 
@@ -89,6 +93,10 @@ defmodule Queue do
   @doc """
   Mark the current song as finished,
   move to the next one.
+
+  This should call Alchemy's Voice.stop_audio
+  then the voice manager process calls Voice.play_url
+  again.
   """
   @spec finish(pid()) :: {:ok, String.t} | {:error, String.t}
   def finish(pid) do
@@ -121,7 +129,8 @@ defmodule Queue.Registry do
   """
   use GenServer
 
-  def start_link
-
+  def start do
+    GenServer.start(__MODULE__, %{})
+  end
 end
 
